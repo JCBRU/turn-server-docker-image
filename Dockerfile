@@ -8,6 +8,7 @@ WORKDIR /app
 ADD . /app
 
 EXPOSE 3478
+EXPOSE 5349
 
 RUN apt-get update && apt-get install -y \
     dnsutils \
