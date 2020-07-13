@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+
+  coturn-server:
+    image: jcbru/coturn-server:latest
+    container_name: coturn-server
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - 3478:3478
+      - 3478:3478/udp
+      - 5349:5349
+      - 5349:5349/udp
+    command: ["${TURN_USER}", "${TURN_PASSWORD}", "${VIRTUAL_HOST}"]
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - certs:/etc/ssl/
+
+volumes:
+  certs:
+    external: 
+      name: nginx-proxy_certs
