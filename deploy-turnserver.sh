@@ -12,12 +12,14 @@ relay-ip="$internalIp"
 external-ip="$externalIp"
 realm=$3
 server-name=$3
-lt-cred-mech
+static-auth-secret=$2
+#lt-cred-mech
+use-auth-secret
 userdb=/var/lib/turn/turndb
 # use real-valid certificate/privatekey files
 cert=/etc/ssl/turn_server_cert.pem
 pkey=/etc/ssl/turn_server_pkey.pem
- 
+no-tlsv1
 no-stdout-log"  | tee /etc/turnserver.conf
 
 
